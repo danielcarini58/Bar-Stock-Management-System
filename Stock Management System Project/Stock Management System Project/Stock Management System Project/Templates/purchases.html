@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+        rel="stylesheet">
+    <title>Purchases</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+</head>
+
+<body>
+
+    <div id="sidebarContainer"></div>
+    <header>
+        <h1 id="pageTitle">Purchases</h1>
+    </header>
+
+    <div class="main-container">
+
+        <!-- Enter rest of content for purchases here-->
+        <p id="pageDescription" class="text-muted fs-6 mb-4">
+            Welcome to your Purchases section! Here you can manage your orders, track suppliers, and monitor order
+            statuses.
+        </p>
+        <h5>Add New Order</h5>
+        <form id="addPurchaseForm" class="row g-3 mb-4">
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="orderId" placeholder="Order ID" required>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="supplier" placeholder="Supplier" required>
+            </div>
+    
+    <div class="col-md-2">
+        <input type="date" class="form-control" id="purchase_date" required>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="description" placeholder="Description" required>
+    </div>
+
+    <div class="col-md-2">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#itemsModal">
+            Add Items
+        </button>
+    </div>
+
+    <div class="col-md-2">
+        <select type="text" class="form-select" id="orderStatus" required>
+            <option value="">Status</option>
+            <option value="Pending">Pending</option>
+            <option value="Ordered">Ordered</option>
+            <option value="Delivered">Delivered</option>
+        </select>
+    </div>
+
+    <div class ="col-md-12">
+        <ul id="orderItemsList" class="list-group mb-3">
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Add Order</button>
+    </div>
+
+    </form>
+    </div>
+    <table class="table table-purchases">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Supplier</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="purchasesTable"></tbody>
+    </table>
+    </div>
+        <div class="modal fade" id="itemsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Items to Order</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <select class="form-select mb-2" id="itemSelectModal">
+                        <option value="">Select Item</option>
+                    </select>
+                    <input type="number" class="form-control mb-3" id="itemQuantityModal" placeholder="Quantity" min="1">
+                    <button class="btn btn-primary mb-3" onclick="addItemToOrder()">
+                        Add Item
+                    </button>
+
+                    <ul id="modalItemsList" class="list-group">
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                </div>
+            </div>
+        </div>
+        <div id="aiBubble">💬</div>
+        <div id ="aiChatBox">
+            <button id="closeAiChat">✕</button>
+            <div id="aiMessages"></div>
+
+            <input type="text" id="aiInput" placeholder="Ask about sales, stock..." />  
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/purchases.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ai.js') }}"></script>
+
+</body>
+
+</html>
