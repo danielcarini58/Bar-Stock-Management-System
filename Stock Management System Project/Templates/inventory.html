@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+        rel="stylesheet">
+    <title>Inventory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+</head>
+
+<body>
+
+    <div id="sidebarContainer"></div>
+    <header>
+        <h1 id="pageTitle">Inventory</h1>
+    </header>
+
+    <div class="main-container">
+
+        <!-- Enter rest of content for inventory here-->
+        <p id="pageDescription" class="text-muted fs-6 mb-4">
+            Welcome to your Inventory! Here you can manage your stock levels, update item statuses, and keep track of
+            restock dates.
+        </p>
+        <h5>Add New Item</h5>
+        <form id="addItemForm" class="row g-3 mb-4">
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="newItemName" placeholder="Item Name" required>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="newItemStock" placeholder="Stock" required>
+            </div>
+            <div class="col-md-2">
+                <input type="number" step="0.01" class="form-control" id="newItemPrice" placeholder="Price (£)" required>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="newItemStatus" placeholder="Status" required>
+            </div>
+            <div class="col-md-3">
+                <input type="date" class="form-control" id="newLastStock" placeholder="Last Restock" required>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Add Item</button>
+            </div>
+
+        </form>
+        <table class="table table-striped table-inventory">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Stock</th>
+                    <th>Price (£)</th>
+                    <th>Status</th>
+                    <th>Last Restock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="inventoryTable">
+               
+            </tbody>
+        </table>
+        <div id="wasteModal">
+            <h5 id="wasteTitle">Mark Waste</h5>
+            <input id="wasteQuantity" class="form-control mb-2" placeholder="Quantity">
+            <input id="wasteCost" class="form-control mb-2" placeholder="Cost">
+            <input id="wasteReason" class="form-control mb-2" placeholder="Reason">
+
+            <button class="btn btn-danger btn-sm w-90" onclick="submitWaste()">Submit</button>
+            <button class="btn btn-primary btn-sm w-90 mt-1" onclick="closeWasteModal()">Close</button>
+
+        </div>
+        <div id="aiBubble">💬</div>
+        <div id ="aiChatBox">
+            <button id="closeAiChat">✕</button>
+            <div id="aiMessages"></div>
+
+            <input type="text" id="aiInput" placeholder="Ask about sales, stock..." />  
+            <button onclick="sendMessage()">Send</button>
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/inventory.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ai.js') }}"></script>
+</body>
+
+</html>
